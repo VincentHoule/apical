@@ -59,23 +59,5 @@
     <div id="menu_page">
         <?php wp_nav_menu();?>
     </div>
-<script>
-    var login = document.getElementById("block_login");
-    var rechercher = document.getElementById("block_recherche");
-
-    function recherche(){
-        rechercher.classList.toggle("none");
-        if(!login.classList.contains("none")){
-            login.classList.toggle("none")
-        }
-    }
-
-    function formulaire(){
-        login.classList.toggle("none")
-        if(!rechercher.classList.contains("none")){
-            rechercher.classList.toggle("none")
-        }
-    }
-
-</script>
+<?php _header();?>
 </header>
