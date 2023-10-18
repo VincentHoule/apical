@@ -17,14 +17,37 @@
             <img id="logo_recherche_02" src="wp-content/themes/apical/assets/Rechercher-MenuSecondaire.png">
             <button onclick="recherche()" id="btn_rechercher">X</button>
         </div>
+
         <div id="block_login" class="none">
             <form method="post" id="formulaire">
+
+                    <?php
+                    if(isset($_POST['submit']))
+                    {
+
+                        $creds = array();
+                        $creds['user_login'] = $_POST['log'];
+                        $creds['user_password'] = $_POST['pwd'];
+                        $creds['remember'] = true;
+
+                        $user = wp_signon( $creds, false );
+
+                        if ( is_wp_error($user) ) {
+                            echo "<span id='message_error'>Code d'usager ou mot de passe invalide.</span>";
+                        }
+                        else{
+                            wp_redirect("http://localhost:8888/wp-admin/");
+                            exit();
+                        }
+                    }
+
+                    ?>
                 <div class="section_login">
                     <label class="login" for="login">
                         * Usager:
                     </label>
                     <div class="section_input">
-                        <input autofocus type="text" class="input_form">
+                        <input  name="log" autofocus type="text" class="input_form">
                     </div>
                 </div>
                 <div class="section_login">
@@ -32,7 +55,7 @@
                         * Mot de passe:
                     </label>
                     <div class="section_input">
-                        <input autofocus type="password" class="input_form">
+                        <input name="pwd" autofocus type="password" class="input_form">
                     </div>
                 </div>
                 <div class="section_login">
@@ -40,7 +63,7 @@
                     <div class="section_case">
                         <div id="form_check">
                             <label for="resterconnecter">
-                                <input type="checkbox" id="rester_connecter">
+                                <input name="rememberme" type="checkbox" id="rester_connecter">
                                 Rester connecté
                             </label>
                         </div>
@@ -49,10 +72,11 @@
                 <div class="section_login">
                     <div class="combler"></div>
                     <div class="section_case">
-                        <a class="btn" id="soumettre_login">Soumettre</a>
+                        <input type="submit" name="submit" class="btn" id="soumettre_login" value="Soumettre">
                     </div>
                 </div>
             </form>
+
             <button onclick="formulaire()" id="btn_login">X</button>
         </div>
     </div>

@@ -114,6 +114,12 @@ body{
     padding-top: 20px;
 }
 
+#message_error{
+    display: block;
+    color: red;
+    margin-bottom: 30px;
+}
+
 .section_login{
     display: flex;
     flex-wrap: nowrap;
